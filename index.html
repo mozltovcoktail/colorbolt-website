@@ -30,38 +30,7 @@
 
   <!-- ── Hero: all 30 actual app colors ───────────── -->
   <section class="hero">
-    <div class="hero-grid" aria-hidden="true">
-      <div class="hc" style="background:#FF2000;color:#000" data-name="Red"></div>
-      <div class="hc" style="background:#FFFFFF;color:#000" data-name="White"></div>
-      <div class="hc" style="background:#008000;color:#fff" data-name="Green"></div>
-      <div class="hc" style="background:#00FFFF;color:#000" data-name="Cyan"></div>
-      <div class="hc" style="background:#FF00FF;color:#000" data-name="Magenta"></div>
-      <div class="hc" style="background:#FFA500;color:#000" data-name="Orange"></div>
-      <div class="hc" style="background:#FDFCC4;color:#000" data-name="Glow"></div>
-      <div class="hc" style="background:#D2FEFD;color:#000" data-name="Frost"></div>
-      <div class="hc" style="background:#FDD3AB;color:#000" data-name="Cozy"></div>
-      <div class="hc" style="background:#A0F9FB;color:#000" data-name="Icecube"></div>
-      <div class="hc" style="background:#FFD479;color:#000" data-name="Ember"></div>
-      <div class="hc" style="background:#49B5FF;color:#fff" data-name="Subzero"></div>
-      <div class="hc" style="background:#B6B6B6;color:#000" data-name="No Signal"></div>
-      <div class="hc" style="background:#02C0C0;color:#000" data-name="Kitchen Table"></div>
-      <div class="hc" style="background:#C0C000;color:#000" data-name="Stale Popcorn"></div>
-      <div class="hc" style="background:#01C001;color:#000" data-name="Astroturf"></div>
-      <div class="hc" style="background:#310169;color:#fff" data-name="Dusk"></div>
-      <div class="hc" style="background:#BF01BD;color:#fff" data-name="Mom's Dress"></div>
-      <div class="hc" style="background:#FFFF00;color:#000" data-name="Yellow"></div>
-      <div class="hc" style="background:#0000FF;color:#fff" data-name="Blue"></div>
-      <div class="hc" style="background:#800080;color:#fff" data-name="Purple"></div>
-      <div class="hc" style="background:#A52A2A;color:#fff" data-name="Brown"></div>
-      <div class="hc" style="background:#FD6351;color:#000" data-name="Flushed"></div>
-      <div class="hc" style="background:#A476FD;color:#000" data-name="Shiver"></div>
-      <div class="hc" style="background:#E73109;color:#fff" data-name="Inferno"></div>
-      <div class="hc" style="background:#5A4FCF;color:#fff" data-name="Still"></div>
-      <div class="hc" style="background:#00214C;color:#fff" data-name="Midnight"></div>
-      <div class="hc" style="background:#BF0000;color:#fff" data-name="You Died"></div>
-      <div class="hc" style="background:#131313;color:#8E8E93" data-name="Lights Out"></div>
-      <div class="hc" style="background:#0001BE;color:#fff" data-name="Channel 3"></div>
-    </div>
+    <div class="hero-grid" id="hero-grid" aria-hidden="true"></div>
 
     <div class="hero-hud">
       <div class="hud-label">
@@ -224,6 +193,68 @@
   </footer>
 
   <script>
+    // All 30 colors — hero grid + palette
+    const heroColors = [
+      { name: 'Red',           hex: '#FF2000', rgb: '255, 32, 0',    text: '#000' },
+      { name: 'White',         hex: '#FFFFFF', rgb: '255, 255, 255', text: '#000' },
+      { name: 'Green',         hex: '#008000', rgb: '0, 128, 0',     text: '#fff' },
+      { name: 'Cyan',          hex: '#00FFFF', rgb: '0, 255, 255',   text: '#000' },
+      { name: 'Magenta',       hex: '#FF00FF', rgb: '255, 0, 255',   text: '#000' },
+      { name: 'Orange',        hex: '#FFA500', rgb: '255, 165, 0',   text: '#000' },
+      { name: 'Glow',          hex: '#FDFCC4', rgb: '253, 252, 196', text: '#000' },
+      { name: 'Frost',         hex: '#D2FEFD', rgb: '210, 254, 253', text: '#000' },
+      { name: 'Cozy',          hex: '#FDD3AB', rgb: '253, 211, 171', text: '#000' },
+      { name: 'Icecube',       hex: '#A0F9FB', rgb: '160, 249, 251', text: '#000' },
+      { name: 'Ember',         hex: '#FFD479', rgb: '255, 212, 121', text: '#000' },
+      { name: 'Subzero',       hex: '#49B5FF', rgb: '73, 181, 255',  text: '#fff' },
+      { name: 'No Signal',     hex: '#B6B6B6', rgb: '182, 182, 182', text: '#000' },
+      { name: 'Kitchen Table', hex: '#02C0C0', rgb: '2, 192, 192',   text: '#000' },
+      { name: 'Stale Popcorn', hex: '#C0C000', rgb: '192, 192, 0',   text: '#000' },
+      { name: 'Astroturf',     hex: '#01C001', rgb: '1, 192, 1',     text: '#000' },
+      { name: 'Dusk',          hex: '#310169', rgb: '49, 1, 105',    text: '#fff' },
+      { name: "Mom's Dress",   hex: '#BF01BD', rgb: '191, 1, 189',   text: '#fff' },
+      { name: 'Yellow',        hex: '#FFFF00', rgb: '255, 255, 0',   text: '#000' },
+      { name: 'Blue',          hex: '#0000FF', rgb: '0, 0, 255',     text: '#fff' },
+      { name: 'Purple',        hex: '#800080', rgb: '128, 0, 128',   text: '#fff' },
+      { name: 'Brown',         hex: '#A52A2A', rgb: '165, 42, 42',   text: '#fff' },
+      { name: 'Flushed',       hex: '#FD6351', rgb: '253, 99, 81',   text: '#000' },
+      { name: 'Shiver',        hex: '#A476FD', rgb: '164, 118, 253', text: '#000' },
+      { name: 'Inferno',       hex: '#E73109', rgb: '231, 49, 9',    text: '#fff' },
+      { name: 'Still',         hex: '#5A4FCF', rgb: '90, 79, 207',   text: '#fff' },
+      { name: 'Midnight',      hex: '#00214C', rgb: '0, 33, 76',     text: '#fff' },
+      { name: 'You Died',      hex: '#BF0000', rgb: '191, 0, 0',     text: '#fff' },
+      { name: 'Lights Out',    hex: '#131313', rgb: '19, 19, 19',    text: '#8E8E93' },
+      { name: 'Channel 3',     hex: '#0001BE', rgb: '0, 0, 190',     text: '#fff' },
+    ];
+
+    // Build hero grid
+    const heroGrid = document.getElementById('hero-grid');
+    heroColors.forEach(c => {
+      const cell = document.createElement('div');
+      cell.className = 'hc';
+      cell.style.background = c.hex;
+      cell.style.color = c.text;
+      cell.innerHTML = `
+        <div class="hc-info">
+          <span class="hci-name">${c.name.toUpperCase()}</span>
+          <span class="hci-hex">${c.hex}</span>
+          <span class="hci-rgb">${c.rgb}</span>
+        </div>`;
+      // Click / touch toggles pinned state
+      cell.addEventListener('click', e => {
+        const wasActive = cell.classList.contains('pinned');
+        document.querySelectorAll('.hc.pinned').forEach(el => el.classList.remove('pinned'));
+        if (!wasActive) cell.classList.add('pinned');
+        e.stopPropagation();
+      });
+      heroGrid.appendChild(cell);
+    });
+
+    // Dismiss pinned on outside click
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.hc.pinned').forEach(el => el.classList.remove('pinned'));
+    });
+
     const palettes = {
       basics: [
         { name: 'RED',     hex: '#FF2000', rgb: '255, 32, 0',    text: '#000' },

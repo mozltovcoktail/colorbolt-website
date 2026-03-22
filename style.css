@@ -88,34 +88,62 @@ a { color: inherit; text-decoration: none; }
 
 /* All cells equal — grid handles sizing */
 
-/* Hover: show color name centered on the cell */
+/* Each cell has an info overlay that shows on hover + click */
 .hc {
   position: relative;
   cursor: default;
+  overflow: hidden;
 }
 
-.hc::after {
-  content: attr(data-name);
+.hc-info {
   position: absolute;
   inset: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: var(--font);
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+
+.hci-name {
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: inherit;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-  pointer-events: none;
-  /* white-space prevents wrapping on short names */
-  white-space: nowrap;
 }
 
-.hc:hover::after {
+.hci-hex {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  opacity: 0.65;
+  color: inherit;
+  font-family: 'Menlo', 'Courier New', monospace;
+}
+
+.hci-rgb {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  opacity: 0.45;
+  color: inherit;
+  font-family: 'Menlo', 'Courier New', monospace;
+}
+
+/* Hover or pinned (click) shows info */
+.hc:hover .hc-info,
+.hc.pinned .hc-info {
   opacity: 1;
+}
+
+/* Darken slightly on hover so text reads better */
+.hc:hover,
+.hc.pinned {
+  filter: brightness(0.88);
 }
 
 /* App-style HUD sitting above the CTA strip */
@@ -294,11 +322,22 @@ a { color: inherit; text-decoration: none; }
   gap: 3px;
 }
 
-/* On hover: show only the name (hide hex), slightly dim */
-.pcell:hover { filter: brightness(0.92); }
+/* Hover or click: emphasise name, fade hex */
+.pcell:hover,
+.pcell.pinned {
+  filter: brightness(0.9);
+}
 
-.pcell:hover .pcell-hex { opacity: 0; }
-.pcell:hover .pcell-name { opacity: 1; font-weight: 700; letter-spacing: 2px; }
+.pcell:hover .pcell-name,
+.pcell.pinned .pcell-name {
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.pcell:hover .pcell-hex,
+.pcell.pinned .pcell-hex {
+  opacity: 0.7;
+}
 
 .pcell-name {
   font-size: 14px;
