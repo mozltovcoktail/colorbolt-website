@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Colorbolt — Pick a color. Fill the screen.</title>
-  <meta name="description" content="Colorbolt is a beautiful, minimalist color exploration app. Pick any color, fill your entire screen. Available on iOS and Android." />
-  <meta property="og:title" content="Colorbolt" />
-  <meta property="og:description" content="Pick a color. Fill the screen. A beautiful color exploration app." />
+  <meta name="description" content="Colorbolt is a minimalist color exploration app. 30 curated colors, breathing exercises, home screen widgets. Free on iOS and Android." />
+  <meta property="og:title" content="Colorbolt — Pick a color. Fill the screen." />
+  <meta property="og:description" content="30 curated colors. Free on iOS and Android." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/public/icon-512.png" />
   <meta property="og:url" content="https://colorbolt.net" />
@@ -16,90 +16,272 @@
 </head>
 <body>
 
-  <!-- ── Navbar ──────────────────────────────────── -->
-  <nav class="navbar">
+  <!-- ── Nav ─────────────────────────────────────── -->
+  <nav class="nav" id="nav">
     <a href="/" class="nav-brand">
-      <img src="/public/icon-512.png" alt="Colorbolt icon" />
+      <img src="/public/icon-512.png" alt="Colorbolt" />
       Colorbolt
     </a>
-    <ul class="nav-links">
-      <li><a href="/terms">Terms</a></li>
-      <li><a href="/privacy">Privacy</a></li>
-    </ul>
+    <div class="nav-links">
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+    </div>
   </nav>
 
-  <!-- ── Hero ────────────────────────────────────── -->
+  <!-- ── Hero: full-bleed color grid ──────────────── -->
   <section class="hero">
-    <img src="/public/icon-512.png" alt="Colorbolt app icon" class="hero-icon" />
-    <h1>Pick a color.<br>Fill the screen.</h1>
-    <p class="hero-tagline">A beautiful, minimalist color exploration app. Tap to choose, hold to explore. Simple as that.</p>
-    <div class="hero-badges">
-      <a href="https://apps.apple.com/app/colorbolt/id1467370798" class="badge-link" aria-label="Download on the App Store">
-        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=com.AaronPrice.Colorbolt" class="badge-link" aria-label="Get it on Google Play">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
-      </a>
+    <div class="hero-grid" id="hero-grid" aria-hidden="true"></div>
+    <div class="hero-hud">
+      <div class="hero-hud-label">
+        <span class="hud-name" id="hud-name">SUBZERO</span>
+        <span class="hud-hex" id="hud-hex">#49B5FF</span>
+        <span class="hud-rgb" id="hud-rgb">73, 181, 255</span>
+      </div>
+      <p class="hero-instr">LONG PRESS · SWIPE · TAP</p>
     </div>
-  </section>
-
-  <!-- ── Features ────────────────────────────────── -->
-  <section class="features">
-    <h2>Color, everywhere.</h2>
-    <p class="features-sub">Colorbolt turns your device into a stunning, full-screen color light source.</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <span class="feature-emoji">🎨</span>
-        <h3>30 Curated Colors</h3>
-        <p>Three beautiful palettes — carefully chosen for vibrancy and variety.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-emoji">🌬️</span>
-        <h3>Breathing Exercises</h3>
-        <p>Guided breathing with calming screen animations. 4-7-8, Box, and Relaxing modes.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-emoji">⌚</span>
-        <h3>Widget & Watch</h3>
-        <p>Home screen widgets and Apple Watch companion for color at a glance.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-emoji">💡</span>
-        <h3>Instant Ambiance</h3>
-        <p>Use as a photo backdrop, ambient light, or calming night light.</p>
+    <div class="hero-cta">
+      <h1>Pick a color.<br>Fill the screen.</h1>
+      <div class="badge-row">
+        <a href="https://apps.apple.com/app/colorbolt/id1467370798" class="badge-link" aria-label="Download on the App Store">
+          <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.AaronPrice.Colorbolt" class="badge-link" aria-label="Get it on Google Play">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- ── Illuminated Section ─────────────────────── -->
-  <section class="illuminated-section">
-    <div class="illuminated-card">
-      <svg class="bolt-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4096 4096" fill="currentColor">
-        <g transform="translate(2048 2048)">
-          <path d="M213.886,-57.071 L1461.67,-2211.98 L99.7815,-2211.98 L-1099.21,198.87 L-237.246,198.87 L-1283.96,2153.37 L-567.11,2153.37 L1024.32,-57.071 L213.886,-57.071 Z" />
-        </g>
-      </svg>
-      <h2>Colorbolt Illuminated</h2>
-      <p class="price">One-time purchase — $2.99</p>
-      <ul class="illuminated-features">
+  <!-- ── Palette picker (interactive) ─────────────── -->
+  <section class="picker-section">
+    <div class="picker-header">
+      <span class="label">30 COLORS · 3 PALETTES</span>
+      <div class="picker-tabs">
+        <button class="ptab active" data-p="basics" id="tab-basics">Basics</button>
+        <button class="ptab" data-p="vibes" id="tab-vibes">Vibes</button>
+        <button class="ptab" data-p="moods" id="tab-moods">Moods</button>
+      </div>
+    </div>
+    <div class="picker-grid" id="picker-grid"></div>
+  </section>
+
+  <!-- ── How it works ─────────────────────────────── -->
+  <section class="how-section">
+    <div class="how-color-block" id="how-block" aria-hidden="true"></div>
+    <div class="how-text">
+      <span class="label">HOW IT WORKS</span>
+      <div class="gesture-list">
+        <div class="gesture-row">
+          <span class="g-action">LONG PRESS</span>
+          <span class="g-desc">to change color</span>
+        </div>
+        <div class="gesture-row">
+          <span class="g-action">SWIPE UP / DOWN</span>
+          <span class="g-desc">to change brightness</span>
+        </div>
+        <div class="gesture-row">
+          <span class="g-action">TAP</span>
+          <span class="g-desc">to show or hide text</span>
+        </div>
+      </div>
+      <div class="no-bs">
+        <span>NO ADS</span>
+        <span class="mid-dot">·</span>
+        <span>NO SUBSCRIPTIONS</span>
+        <span class="mid-dot">·</span>
+        <span>NO IN-APP PURCHASES</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Features ──────────────────────────────────── -->
+  <section class="features-section">
+    <div class="feat-row" id="feat-breathing">
+      <div class="feat-swatch" style="background:#49B5FF"></div>
+      <div class="feat-body">
+        <h3>BREATHING EXERCISES</h3>
+        <p>Guided breathwork with color as your anchor.<br>4-7-8, Box, and Relaxing modes.</p>
+      </div>
+    </div>
+    <div class="feat-row" id="feat-widget">
+      <div class="feat-swatch" style="background:#A476FD"></div>
+      <div class="feat-body">
+        <h3>WIDGET &amp; WATCH</h3>
+        <p>Home screen widgets and Apple Watch support.<br>Your color, always one glance away.</p>
+      </div>
+    </div>
+    <div class="feat-row" id="feat-hex">
+      <div class="feat-swatch" style="background:#FFD479"></div>
+      <div class="feat-body">
+        <h3>HEX &amp; RGB VALUES</h3>
+        <p>Every color shows its name, hex, and RGB.<br>Useful for designers and curious minds.</p>
+      </div>
+    </div>
+    <div class="feat-row" id="feat-light">
+      <div class="feat-swatch" style="background:#FD6351"></div>
+      <div class="feat-body">
+        <h3>INSTANT AMBIANCE</h3>
+        <p>Photo backdrop. Bias light. Night light.<br>The screen is the point.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Illuminated ───────────────────────────────── -->
+  <section class="illuminated-section" id="illuminated">
+    <div class="ill-swatch-grid" aria-hidden="true">
+      <div style="background:#3DFFD0"></div>
+      <div style="background:#FF6B9D"></div>
+      <div style="background:#C8FF57"></div>
+      <div style="background:#7B5EA7"></div>
+    </div>
+    <div class="ill-text">
+      <span class="label">COLORBOLT ILLUMINATED · $2.99</span>
+      <h2>Make your own colors.</h2>
+      <ul class="ill-list">
         <li>Custom Color Creator</li>
         <li>Personal Color Library</li>
         <li>OLED Black Mode</li>
         <li>Sleep Timer</li>
         <li>Wake-up Alarm</li>
       </ul>
+      <p class="ill-note">One-time purchase. No subscription.</p>
     </div>
   </section>
 
-  <!-- ── Footer ──────────────────────────────────── -->
+  <!-- ── Download ──────────────────────────────────── -->
+  <section class="download-section">
+    <h2>Free download.</h2>
+    <div class="badge-row">
+      <a href="https://apps.apple.com/app/colorbolt/id1467370798" class="badge-link" id="dl-ios" aria-label="Download on the App Store">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" />
+      </a>
+      <a href="https://play.google.com/store/apps/details?id=com.AaronPrice.Colorbolt" class="badge-link" id="dl-android" aria-label="Get it on Google Play">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" />
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────── -->
   <footer class="footer">
+    <a href="/" class="footer-brand">
+      <img src="/public/icon-512.png" alt="Colorbolt" />
+      Colorbolt
+    </a>
     <div class="footer-links">
       <a href="/terms">Terms of Service</a>
       <a href="/privacy">Privacy Policy</a>
       <a href="mailto:hello@colorbolt.net">Contact</a>
     </div>
-    <p class="footer-copy">&copy; 2025 Aaron Price. All rights reserved.</p>
+    <p class="footer-copy">&copy; 2025 Aaron Price</p>
   </footer>
+
+  <script>
+    const palettes = {
+      basics: [
+        { name: 'RED',     hex: '#FF2000', rgb: '255, 32, 0',   text: '#000' },
+        { name: 'WHITE',   hex: '#FFFFFF', rgb: '255, 255, 255',text: '#000' },
+        { name: 'GREEN',   hex: '#008000', rgb: '0, 128, 0',    text: '#FFF' },
+        { name: 'CYAN',    hex: '#00FFFF', rgb: '0, 255, 255',  text: '#000' },
+        { name: 'MAGENTA', hex: '#FF00FF', rgb: '255, 0, 255',  text: '#000' },
+        { name: 'ORANGE',  hex: '#FFA500', rgb: '255, 165, 0',  text: '#000' },
+        { name: 'YELLOW',  hex: '#FFFF00', rgb: '255, 255, 0',  text: '#000' },
+        { name: 'BLUE',    hex: '#0000FF', rgb: '0, 0, 255',    text: '#FFF' },
+        { name: 'PURPLE',  hex: '#800080', rgb: '128, 0, 128',  text: '#FFF' },
+        { name: 'BROWN',   hex: '#A52A2A', rgb: '165, 42, 42',  text: '#FFF' },
+      ],
+      vibes: [
+        { name: 'GLOW',    hex: '#FDFCC4', rgb: '253, 252, 196',text: '#000' },
+        { name: 'FROST',   hex: '#D2FEFD', rgb: '210, 254, 253',text: '#000' },
+        { name: 'COZY',    hex: '#FDD3AB', rgb: '253, 211, 171',text: '#000' },
+        { name: 'ICECUBE', hex: '#A0F9FB', rgb: '160, 249, 251',text: '#000' },
+        { name: 'EMBER',   hex: '#FFD479', rgb: '255, 212, 121',text: '#000' },
+        { name: 'SUBZERO', hex: '#49B5FF', rgb: '73, 181, 255', text: '#FFF' },
+        { name: 'FLUSHED', hex: '#FD6351', rgb: '253, 99, 81',  text: '#000' },
+        { name: 'SHIVER',  hex: '#A476FD', rgb: '164, 118, 253',text: '#000' },
+        { name: 'INFERNO', hex: '#E73109', rgb: '231, 49, 9',   text: '#FFF' },
+        { name: 'STILL',   hex: '#5A4FCF', rgb: '90, 79, 207',  text: '#FFF' },
+      ],
+      moods: [
+        { name: 'NO SIGNAL',     hex: '#B6B6B6', rgb: '182, 182, 182',text: '#000' },
+        { name: 'KITCHEN TABLE', hex: '#02C0C0', rgb: '2, 192, 192',  text: '#000' },
+        { name: 'STALE POPCORN', hex: '#C0C000', rgb: '192, 192, 0',  text: '#000' },
+        { name: 'ASTROTURF',     hex: '#01C001', rgb: '1, 192, 1',    text: '#000' },
+        { name: 'DUSK',          hex: '#310169', rgb: '49, 1, 105',   text: '#FFF' },
+        { name: "MOM'S DRESS",   hex: '#BF01BD', rgb: '191, 1, 189',  text: '#FFF' },
+        { name: 'MIDNIGHT',      hex: '#00214C', rgb: '0, 33, 76',    text: '#FFF' },
+        { name: 'YOU DIED',      hex: '#BF0000', rgb: '191, 0, 0',    text: '#FFF' },
+        { name: 'LIGHTS OUT',    hex: '#131313', rgb: '19, 19, 19',   text: '#8E8E93' },
+        { name: 'CHANNEL 3',     hex: '#0001BE', rgb: '0, 0, 190',    text: '#FFF' },
+      ],
+    };
+
+    // Hero grid — all 30 colors as solid blocks
+    const all = [...palettes.basics, ...palettes.vibes, ...palettes.moods];
+    const heroGrid = document.getElementById('hero-grid');
+    all.forEach(c => {
+      const d = document.createElement('div');
+      d.style.background = c.hex;
+      d.dataset.name = c.name;
+      d.dataset.hex = c.hex;
+      d.dataset.rgb = c.rgb;
+      d.dataset.text = c.text;
+      heroGrid.appendChild(d);
+    });
+
+    // Cycle hero HUD label through colors
+    let hudIdx = 5; // start on SUBZERO
+    const hudName = document.getElementById('hud-name');
+    const hudHex  = document.getElementById('hud-hex');
+    const hudRgb  = document.getElementById('hud-rgb');
+
+    function cycleHud() {
+      hudIdx = (hudIdx + 1) % all.length;
+      const c = all[hudIdx];
+      hudName.textContent = c.name;
+      hudHex.textContent  = c.hex;
+      hudRgb.textContent  = c.rgb;
+    }
+    setInterval(cycleHud, 2000);
+
+    // "How it works" color block cycles
+    const howColors = ['#49B5FF','#A476FD','#FFD479','#FD6351','#E73109','#5A4FCF','#008000','#FF2000'];
+    let howIdx = 0;
+    const howBlock = document.getElementById('how-block');
+    howBlock.style.background = howColors[0];
+    setInterval(() => {
+      howIdx = (howIdx + 1) % howColors.length;
+      howBlock.style.background = howColors[howIdx];
+    }, 1800);
+
+    // Palette grid
+    function renderPalette(key) {
+      const grid = document.getElementById('picker-grid');
+      grid.innerHTML = '';
+      palettes[key].forEach(c => {
+        const cell = document.createElement('div');
+        cell.className = 'pcell';
+        cell.style.background = c.hex;
+        cell.style.color = c.text;
+        cell.innerHTML = `<span class="pcell-name">${c.name}</span><span class="pcell-hex">${c.hex}</span>`;
+        grid.appendChild(cell);
+      });
+    }
+
+    document.querySelectorAll('.ptab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPalette(btn.dataset.p);
+      });
+    });
+
+    renderPalette('basics');
+
+    // Nav scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('nav--solid', window.scrollY > 40);
+    }, { passive: true });
+  </script>
 
 </body>
 </html>
