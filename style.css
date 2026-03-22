@@ -1,5 +1,6 @@
 /* ── Colorbolt.net ───────────────────────────────────── */
 /* Font: Helvetica Neue. Solid blocks. No decoration.     */
+/* Hover: color name appears centered on the cell.        */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -85,7 +86,37 @@ a { color: inherit; text-decoration: none; }
   grid-template-rows: repeat(5, 1fr);
 }
 
-/* All cells equal — no extra sizing needed, grid handles it */
+/* All cells equal — grid handles sizing */
+
+/* Hover: show color name centered on the cell */
+.hc {
+  position: relative;
+  cursor: default;
+}
+
+.hc::after {
+  content: attr(data-name);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+  /* white-space prevents wrapping on short names */
+  white-space: nowrap;
+}
+
+.hc:hover::after {
+  opacity: 1;
+}
 
 /* App-style HUD sitting above the CTA strip */
 .hero-hud {
@@ -263,7 +294,11 @@ a { color: inherit; text-decoration: none; }
   gap: 3px;
 }
 
+/* On hover: show only the name (hide hex), slightly dim */
 .pcell:hover { filter: brightness(0.92); }
+
+.pcell:hover .pcell-hex { opacity: 0; }
+.pcell:hover .pcell-name { opacity: 1; font-weight: 700; letter-spacing: 2px; }
 
 .pcell-name {
   font-size: 14px;
@@ -277,6 +312,40 @@ a { color: inherit; text-decoration: none; }
   font-weight: 300;
   opacity: 0.5;
   font-family: 'Menlo', 'Courier New', monospace;
+}
+
+/* ── Floaters ───────────────────────────────────────── */
+/* Scattered text blurbs — deadpan, editorial, on-brand  */
+
+.floater {
+  padding: 32px 24px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-size: clamp(18px, 3.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  color: var(--fg);
+}
+
+.floater--right  { text-align: right; }
+.floater--center { text-align: center; }
+.floater--left   { text-align: left; }
+
+.floater--tilt-neg { transform: rotate(-0.4deg); }
+.floater--tilt-pos { transform: rotate(0.4deg); }
+
+.floater--small {
+  font-size: clamp(13px, 2vw, 18px);
+  font-weight: 400;
+  color: var(--fg-dim);
+  letter-spacing: 0.5px;
+}
+
+.floater--quiet {
+  font-size: clamp(15px, 2.5vw, 24px);
+  font-weight: 400;
+  color: var(--fg-dim);
 }
 
 /* ── How it works ────────────────────────────────────── */

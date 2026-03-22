@@ -28,48 +28,41 @@
     </div>
   </nav>
 
-  <!-- ── Hero: the actual 30 colors as a grid ─────── -->
+  <!-- ── Hero: all 30 actual app colors ───────────── -->
   <section class="hero">
     <div class="hero-grid" aria-hidden="true">
-      <!-- Basics -->
-      <div style="background:#FF2000"></div>
-      <div style="background:#FFFFFF"></div>
-      <div style="background:#008000"></div>
-      <div style="background:#00FFFF"></div>
-      <div style="background:#FF00FF"></div>
-      <div style="background:#FFA500"></div>
-      <!-- Vibes -->
-      <div style="background:#FDFCC4"></div>
-      <div style="background:#D2FEFD"></div>
-      <div style="background:#FDD3AB"></div>
-      <div style="background:#A0F9FB"></div>
-      <div style="background:#FFD479"></div>
-      <div style="background:#49B5FF"></div>
-      <!-- Moods row 1 -->
-      <div style="background:#B6B6B6"></div>
-      <div style="background:#02C0C0"></div>
-      <div style="background:#C0C000"></div>
-      <div style="background:#01C001"></div>
-      <div style="background:#310169"></div>
-      <div style="background:#BF01BD"></div>
-      <!-- more basics -->
-      <div style="background:#FFFF00"></div>
-      <div style="background:#0000FF"></div>
-      <div style="background:#800080"></div>
-      <div style="background:#A52A2A"></div>
-      <!-- more vibes -->
-      <div style="background:#FD6351"></div>
-      <div style="background:#A476FD"></div>
-      <div style="background:#E73109"></div>
-      <div style="background:#5A4FCF"></div>
-      <!-- more moods -->
-      <div style="background:#00214C"></div>
-      <div style="background:#BF0000"></div>
-      <div style="background:#131313"></div>
-      <div style="background:#0001BE"></div>
+      <div class="hc" style="background:#FF2000;color:#000" data-name="Red"></div>
+      <div class="hc" style="background:#FFFFFF;color:#000" data-name="White"></div>
+      <div class="hc" style="background:#008000;color:#fff" data-name="Green"></div>
+      <div class="hc" style="background:#00FFFF;color:#000" data-name="Cyan"></div>
+      <div class="hc" style="background:#FF00FF;color:#000" data-name="Magenta"></div>
+      <div class="hc" style="background:#FFA500;color:#000" data-name="Orange"></div>
+      <div class="hc" style="background:#FDFCC4;color:#000" data-name="Glow"></div>
+      <div class="hc" style="background:#D2FEFD;color:#000" data-name="Frost"></div>
+      <div class="hc" style="background:#FDD3AB;color:#000" data-name="Cozy"></div>
+      <div class="hc" style="background:#A0F9FB;color:#000" data-name="Icecube"></div>
+      <div class="hc" style="background:#FFD479;color:#000" data-name="Ember"></div>
+      <div class="hc" style="background:#49B5FF;color:#fff" data-name="Subzero"></div>
+      <div class="hc" style="background:#B6B6B6;color:#000" data-name="No Signal"></div>
+      <div class="hc" style="background:#02C0C0;color:#000" data-name="Kitchen Table"></div>
+      <div class="hc" style="background:#C0C000;color:#000" data-name="Stale Popcorn"></div>
+      <div class="hc" style="background:#01C001;color:#000" data-name="Astroturf"></div>
+      <div class="hc" style="background:#310169;color:#fff" data-name="Dusk"></div>
+      <div class="hc" style="background:#BF01BD;color:#fff" data-name="Mom's Dress"></div>
+      <div class="hc" style="background:#FFFF00;color:#000" data-name="Yellow"></div>
+      <div class="hc" style="background:#0000FF;color:#fff" data-name="Blue"></div>
+      <div class="hc" style="background:#800080;color:#fff" data-name="Purple"></div>
+      <div class="hc" style="background:#A52A2A;color:#fff" data-name="Brown"></div>
+      <div class="hc" style="background:#FD6351;color:#000" data-name="Flushed"></div>
+      <div class="hc" style="background:#A476FD;color:#000" data-name="Shiver"></div>
+      <div class="hc" style="background:#E73109;color:#fff" data-name="Inferno"></div>
+      <div class="hc" style="background:#5A4FCF;color:#fff" data-name="Still"></div>
+      <div class="hc" style="background:#00214C;color:#fff" data-name="Midnight"></div>
+      <div class="hc" style="background:#BF0000;color:#fff" data-name="You Died"></div>
+      <div class="hc" style="background:#131313;color:#8E8E93" data-name="Lights Out"></div>
+      <div class="hc" style="background:#0001BE;color:#fff" data-name="Channel 3"></div>
     </div>
 
-    <!-- Mimics the app's in-app HUD label -->
     <div class="hero-hud">
       <div class="hud-label">
         <span class="hud-name" id="hud-name">SUBZERO</span>
@@ -92,7 +85,12 @@
     </div>
   </section>
 
-  <!-- ── Use cases — front and center ─────────────── -->
+  <!-- ── Floater 1 ──────────────────────────────────── -->
+  <div class="floater floater--right">
+    Better than flashlights at concerts.
+  </div>
+
+  <!-- ── Use Cases ─────────────────────────────────── -->
   <section class="uses-section">
     <div class="use-cell" style="background:#E73109; color:#fff;">
       <span class="use-label">PHOTO BACKDROP</span>
@@ -120,7 +118,12 @@
     </div>
   </section>
 
-  <!-- ── Palette: the actual 2×5 picker ───────────── -->
+  <!-- ── Floater 2 ──────────────────────────────────── -->
+  <div class="floater floater--left floater--tilt-neg">
+    Great for concerts.
+  </div>
+
+  <!-- ── Palette picker ────────────────────────────── -->
   <section class="palette-section">
     <div class="palette-header">
       <span class="label">30 COLORS · 3 PALETTES</span>
@@ -132,6 +135,11 @@
     </div>
     <div class="picker-grid" id="picker-grid"></div>
   </section>
+
+  <!-- ── Floater 3 ──────────────────────────────────── -->
+  <div class="floater floater--center floater--small">
+    Fun fact: Red is the most subtle light frequency.
+  </div>
 
   <!-- ── How it works ─────────────────────────────── -->
   <section class="how-section">
@@ -156,7 +164,17 @@
     </div>
   </section>
 
-  <!-- ── Illuminated ───────────────────────────────── -->
+  <!-- ── Floater 4 ──────────────────────────────────── -->
+  <div class="floater floater--right floater--tilt-pos">
+    Finding friends at festivals just got easier.
+  </div>
+
+  <!-- ── Floater 5 ──────────────────────────────────── -->
+  <div class="floater floater--left floater--quiet">
+    Perfect for getting into bed<br>without disturbing your partner.
+  </div>
+
+  <!-- ── Illuminated ────────────────────────────────── -->
   <section class="illuminated-section" id="illuminated">
     <div class="ill-grid">
       <div style="background:#3DFFD0"></div>
@@ -178,7 +196,7 @@
     </div>
   </section>
 
-  <!-- ── Download ──────────────────────────────────── -->
+  <!-- ── Download ───────────────────────────────────── -->
   <section class="download-section" id="download">
     <h2>Free download.</h2>
     <div class="badge-row">
@@ -191,7 +209,7 @@
     </div>
   </section>
 
-  <!-- ── Footer ────────────────────────────────────── -->
+  <!-- ── Footer ─────────────────────────────────────── -->
   <footer class="footer">
     <a href="/" class="footer-brand">
       <img src="/public/icon-512.png" alt="Colorbolt" />
@@ -247,7 +265,7 @@
 
     // HUD cycling
     const all = [...palettes.basics, ...palettes.vibes, ...palettes.moods];
-    let hudIdx = 11; // start on SUBZERO
+    let hudIdx = 11;
     const hudName = document.getElementById('hud-name');
     const hudHex  = document.getElementById('hud-hex');
     const hudRgb  = document.getElementById('hud-rgb');
@@ -259,7 +277,7 @@
       hudRgb.textContent  = c.rgb;
     }, 1800);
 
-    // "How it works" block cycles
+    // "How" block cycles through Vibes colors
     const howColors = palettes.vibes.map(c => c.hex);
     let howIdx = 0;
     const howColor = document.getElementById('how-color');
@@ -278,6 +296,7 @@
         cell.className = 'pcell';
         cell.style.background = c.hex;
         cell.style.color = c.text;
+        cell.dataset.name = c.name;
         cell.innerHTML = `<span class="pcell-name">${c.name}</span><span class="pcell-hex">${c.hex}</span>`;
         grid.appendChild(cell);
       });
