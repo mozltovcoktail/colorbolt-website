@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Colorbolt — Pick a color. Fill the screen.</title>
-  <meta name="description" content="Colorbolt is a minimalist color exploration app. 30 curated colors, breathing exercises, home screen widgets. Free on iOS and Android." />
+  <meta name="description" content="Colorbolt is a minimalist color app. Photo backdrop. Bias light. Breathing exercises. Night light. Free on iOS and Android." />
   <meta property="og:title" content="Colorbolt — Pick a color. Fill the screen." />
   <meta property="og:description" content="30 curated colors. Free on iOS and Android." />
   <meta property="og:type" content="website" />
@@ -28,18 +28,58 @@
     </div>
   </nav>
 
-  <!-- ── Hero: full-bleed color grid ──────────────── -->
+  <!-- ── Hero: the actual 30 colors as a grid ─────── -->
   <section class="hero">
-    <div class="hero-grid" id="hero-grid" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true">
+      <!-- Basics -->
+      <div style="background:#FF2000"></div>
+      <div style="background:#FFFFFF"></div>
+      <div style="background:#008000"></div>
+      <div style="background:#00FFFF"></div>
+      <div style="background:#FF00FF"></div>
+      <div style="background:#FFA500"></div>
+      <!-- Vibes -->
+      <div style="background:#FDFCC4"></div>
+      <div style="background:#D2FEFD"></div>
+      <div style="background:#FDD3AB"></div>
+      <div style="background:#A0F9FB"></div>
+      <div style="background:#FFD479"></div>
+      <div style="background:#49B5FF"></div>
+      <!-- Moods row 1 -->
+      <div style="background:#B6B6B6"></div>
+      <div style="background:#02C0C0"></div>
+      <div style="background:#C0C000"></div>
+      <div style="background:#01C001"></div>
+      <div style="background:#310169"></div>
+      <div style="background:#BF01BD"></div>
+      <!-- more basics -->
+      <div style="background:#FFFF00"></div>
+      <div style="background:#0000FF"></div>
+      <div style="background:#800080"></div>
+      <div style="background:#A52A2A"></div>
+      <!-- more vibes -->
+      <div style="background:#FD6351"></div>
+      <div style="background:#A476FD"></div>
+      <div style="background:#E73109"></div>
+      <div style="background:#5A4FCF"></div>
+      <!-- more moods -->
+      <div style="background:#00214C"></div>
+      <div style="background:#BF0000"></div>
+      <div style="background:#131313"></div>
+      <div style="background:#0001BE"></div>
+    </div>
+
+    <!-- Mimics the app's in-app HUD label -->
     <div class="hero-hud">
-      <div class="hero-hud-label">
+      <div class="hud-label">
         <span class="hud-name" id="hud-name">SUBZERO</span>
         <span class="hud-hex" id="hud-hex">#49B5FF</span>
         <span class="hud-rgb" id="hud-rgb">73, 181, 255</span>
       </div>
-      <p class="hero-instr">LONG PRESS · SWIPE · TAP</p>
+      <p class="hud-instr">LONG PRESS · SWIPE · TAP</p>
     </div>
-    <div class="hero-cta">
+
+    <div class="hero-copy">
       <h1>Pick a color.<br>Fill the screen.</h1>
       <div class="badge-row">
         <a href="https://apps.apple.com/app/colorbolt/id1467370798" class="badge-link" aria-label="Download on the App Store">
@@ -52,11 +92,39 @@
     </div>
   </section>
 
-  <!-- ── Palette picker (interactive) ─────────────── -->
-  <section class="picker-section">
-    <div class="picker-header">
+  <!-- ── Use cases — front and center ─────────────── -->
+  <section class="uses-section">
+    <div class="use-cell" style="background:#E73109; color:#fff;">
+      <span class="use-label">PHOTO BACKDROP</span>
+      <span class="use-desc">Instant studio-quality backgrounds. No setup.</span>
+    </div>
+    <div class="use-cell" style="background:#0001BE; color:#fff;">
+      <span class="use-label">BIAS LIGHTING</span>
+      <span class="use-desc">Behind your monitor or TV. Reduces eye strain.</span>
+    </div>
+    <div class="use-cell" style="background:#A0F9FB; color:#000;">
+      <span class="use-label">BREATHING EXERCISES</span>
+      <span class="use-desc">Color + guided breathwork. 4-7-8, Box, Relaxing.</span>
+    </div>
+    <div class="use-cell" style="background:#131313; color:#8E8E93;">
+      <span class="use-label">NIGHT LIGHT</span>
+      <span class="use-desc">Low-intensity color ambiance for dark rooms.</span>
+    </div>
+    <div class="use-cell" style="background:#FDFCC4; color:#000;">
+      <span class="use-label">MOOD LIGHTING</span>
+      <span class="use-desc">Warm, cool, vibrant. Any room, any moment.</span>
+    </div>
+    <div class="use-cell" style="background:#5A4FCF; color:#fff;">
+      <span class="use-label">COLOR REFERENCE</span>
+      <span class="use-desc">Hex, RGB, and color name on screen. Always.</span>
+    </div>
+  </section>
+
+  <!-- ── Palette: the actual 2×5 picker ───────────── -->
+  <section class="palette-section">
+    <div class="palette-header">
       <span class="label">30 COLORS · 3 PALETTES</span>
-      <div class="picker-tabs">
+      <div class="ptabs">
         <button class="ptab active" data-p="basics" id="tab-basics">Basics</button>
         <button class="ptab" data-p="vibes" id="tab-vibes">Vibes</button>
         <button class="ptab" data-p="moods" id="tab-moods">Moods</button>
@@ -67,68 +135,30 @@
 
   <!-- ── How it works ─────────────────────────────── -->
   <section class="how-section">
-    <div class="how-color-block" id="how-block" aria-hidden="true"></div>
+    <div class="how-color" id="how-color"></div>
     <div class="how-text">
       <span class="label">HOW IT WORKS</span>
       <div class="gesture-list">
         <div class="gesture-row">
-          <span class="g-action">LONG PRESS</span>
-          <span class="g-desc">to change color</span>
+          <strong>LONG PRESS</strong>
+          <span>to change color</span>
         </div>
         <div class="gesture-row">
-          <span class="g-action">SWIPE UP / DOWN</span>
-          <span class="g-desc">to change brightness</span>
+          <strong>SWIPE UP / DOWN</strong>
+          <span>to change brightness</span>
         </div>
         <div class="gesture-row">
-          <span class="g-action">TAP</span>
-          <span class="g-desc">to show or hide text</span>
+          <strong>TAP</strong>
+          <span>to show or hide text</span>
         </div>
       </div>
-      <div class="no-bs">
-        <span>NO ADS</span>
-        <span class="mid-dot">·</span>
-        <span>NO SUBSCRIPTIONS</span>
-        <span class="mid-dot">·</span>
-        <span>NO IN-APP PURCHASES</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Features ──────────────────────────────────── -->
-  <section class="features-section">
-    <div class="feat-row" id="feat-breathing">
-      <div class="feat-swatch" style="background:#49B5FF"></div>
-      <div class="feat-body">
-        <h3>BREATHING EXERCISES</h3>
-        <p>Guided breathwork with color as your anchor.<br>4-7-8, Box, and Relaxing modes.</p>
-      </div>
-    </div>
-    <div class="feat-row" id="feat-widget">
-      <div class="feat-swatch" style="background:#A476FD"></div>
-      <div class="feat-body">
-        <h3>WIDGET &amp; WATCH</h3>
-        <p>Home screen widgets and Apple Watch support.<br>Your color, always one glance away.</p>
-      </div>
-    </div>
-    <div class="feat-row" id="feat-hex">
-      <div class="feat-swatch" style="background:#FFD479"></div>
-      <div class="feat-body">
-        <h3>HEX &amp; RGB VALUES</h3>
-        <p>Every color shows its name, hex, and RGB.<br>Useful for designers and curious minds.</p>
-      </div>
-    </div>
-    <div class="feat-row" id="feat-light">
-      <div class="feat-swatch" style="background:#FD6351"></div>
-      <div class="feat-body">
-        <h3>INSTANT AMBIANCE</h3>
-        <p>Photo backdrop. Bias light. Night light.<br>The screen is the point.</p>
-      </div>
+      <p class="no-bs">NO ADS · NO SUBSCRIPTIONS · NO IN-APP PURCHASES</p>
     </div>
   </section>
 
   <!-- ── Illuminated ───────────────────────────────── -->
   <section class="illuminated-section" id="illuminated">
-    <div class="ill-swatch-grid" aria-hidden="true">
+    <div class="ill-grid">
       <div style="background:#3DFFD0"></div>
       <div style="background:#FF6B9D"></div>
       <div style="background:#C8FF57"></div>
@@ -149,7 +179,7 @@
   </section>
 
   <!-- ── Download ──────────────────────────────────── -->
-  <section class="download-section">
+  <section class="download-section" id="download">
     <h2>Free download.</h2>
     <div class="badge-row">
       <a href="https://apps.apple.com/app/colorbolt/id1467370798" class="badge-link" id="dl-ios" aria-label="Download on the App Store">
@@ -178,80 +208,66 @@
   <script>
     const palettes = {
       basics: [
-        { name: 'RED',     hex: '#FF2000', rgb: '255, 32, 0',   text: '#000' },
-        { name: 'WHITE',   hex: '#FFFFFF', rgb: '255, 255, 255',text: '#000' },
-        { name: 'GREEN',   hex: '#008000', rgb: '0, 128, 0',    text: '#FFF' },
-        { name: 'CYAN',    hex: '#00FFFF', rgb: '0, 255, 255',  text: '#000' },
-        { name: 'MAGENTA', hex: '#FF00FF', rgb: '255, 0, 255',  text: '#000' },
-        { name: 'ORANGE',  hex: '#FFA500', rgb: '255, 165, 0',  text: '#000' },
-        { name: 'YELLOW',  hex: '#FFFF00', rgb: '255, 255, 0',  text: '#000' },
-        { name: 'BLUE',    hex: '#0000FF', rgb: '0, 0, 255',    text: '#FFF' },
-        { name: 'PURPLE',  hex: '#800080', rgb: '128, 0, 128',  text: '#FFF' },
-        { name: 'BROWN',   hex: '#A52A2A', rgb: '165, 42, 42',  text: '#FFF' },
+        { name: 'RED',     hex: '#FF2000', rgb: '255, 32, 0',    text: '#000' },
+        { name: 'WHITE',   hex: '#FFFFFF', rgb: '255, 255, 255', text: '#000' },
+        { name: 'GREEN',   hex: '#008000', rgb: '0, 128, 0',     text: '#FFF' },
+        { name: 'CYAN',    hex: '#00FFFF', rgb: '0, 255, 255',   text: '#000' },
+        { name: 'MAGENTA', hex: '#FF00FF', rgb: '255, 0, 255',   text: '#000' },
+        { name: 'ORANGE',  hex: '#FFA500', rgb: '255, 165, 0',   text: '#000' },
+        { name: 'YELLOW',  hex: '#FFFF00', rgb: '255, 255, 0',   text: '#000' },
+        { name: 'BLUE',    hex: '#0000FF', rgb: '0, 0, 255',     text: '#FFF' },
+        { name: 'PURPLE',  hex: '#800080', rgb: '128, 0, 128',   text: '#FFF' },
+        { name: 'BROWN',   hex: '#A52A2A', rgb: '165, 42, 42',   text: '#FFF' },
       ],
       vibes: [
-        { name: 'GLOW',    hex: '#FDFCC4', rgb: '253, 252, 196',text: '#000' },
-        { name: 'FROST',   hex: '#D2FEFD', rgb: '210, 254, 253',text: '#000' },
-        { name: 'COZY',    hex: '#FDD3AB', rgb: '253, 211, 171',text: '#000' },
-        { name: 'ICECUBE', hex: '#A0F9FB', rgb: '160, 249, 251',text: '#000' },
-        { name: 'EMBER',   hex: '#FFD479', rgb: '255, 212, 121',text: '#000' },
-        { name: 'SUBZERO', hex: '#49B5FF', rgb: '73, 181, 255', text: '#FFF' },
-        { name: 'FLUSHED', hex: '#FD6351', rgb: '253, 99, 81',  text: '#000' },
-        { name: 'SHIVER',  hex: '#A476FD', rgb: '164, 118, 253',text: '#000' },
-        { name: 'INFERNO', hex: '#E73109', rgb: '231, 49, 9',   text: '#FFF' },
-        { name: 'STILL',   hex: '#5A4FCF', rgb: '90, 79, 207',  text: '#FFF' },
+        { name: 'GLOW',    hex: '#FDFCC4', rgb: '253, 252, 196', text: '#000' },
+        { name: 'FROST',   hex: '#D2FEFD', rgb: '210, 254, 253', text: '#000' },
+        { name: 'COZY',    hex: '#FDD3AB', rgb: '253, 211, 171', text: '#000' },
+        { name: 'ICECUBE', hex: '#A0F9FB', rgb: '160, 249, 251', text: '#000' },
+        { name: 'EMBER',   hex: '#FFD479', rgb: '255, 212, 121', text: '#000' },
+        { name: 'SUBZERO', hex: '#49B5FF', rgb: '73, 181, 255',  text: '#FFF' },
+        { name: 'FLUSHED', hex: '#FD6351', rgb: '253, 99, 81',   text: '#000' },
+        { name: 'SHIVER',  hex: '#A476FD', rgb: '164, 118, 253', text: '#000' },
+        { name: 'INFERNO', hex: '#E73109', rgb: '231, 49, 9',    text: '#FFF' },
+        { name: 'STILL',   hex: '#5A4FCF', rgb: '90, 79, 207',   text: '#FFF' },
       ],
       moods: [
-        { name: 'NO SIGNAL',     hex: '#B6B6B6', rgb: '182, 182, 182',text: '#000' },
-        { name: 'KITCHEN TABLE', hex: '#02C0C0', rgb: '2, 192, 192',  text: '#000' },
-        { name: 'STALE POPCORN', hex: '#C0C000', rgb: '192, 192, 0',  text: '#000' },
-        { name: 'ASTROTURF',     hex: '#01C001', rgb: '1, 192, 1',    text: '#000' },
-        { name: 'DUSK',          hex: '#310169', rgb: '49, 1, 105',   text: '#FFF' },
-        { name: "MOM'S DRESS",   hex: '#BF01BD', rgb: '191, 1, 189',  text: '#FFF' },
-        { name: 'MIDNIGHT',      hex: '#00214C', rgb: '0, 33, 76',    text: '#FFF' },
-        { name: 'YOU DIED',      hex: '#BF0000', rgb: '191, 0, 0',    text: '#FFF' },
-        { name: 'LIGHTS OUT',    hex: '#131313', rgb: '19, 19, 19',   text: '#8E8E93' },
-        { name: 'CHANNEL 3',     hex: '#0001BE', rgb: '0, 0, 190',    text: '#FFF' },
+        { name: 'NO SIGNAL',     hex: '#B6B6B6', rgb: '182, 182, 182', text: '#000' },
+        { name: 'KITCHEN TABLE', hex: '#02C0C0', rgb: '2, 192, 192',   text: '#000' },
+        { name: 'STALE POPCORN', hex: '#C0C000', rgb: '192, 192, 0',   text: '#000' },
+        { name: 'ASTROTURF',     hex: '#01C001', rgb: '1, 192, 1',     text: '#000' },
+        { name: 'DUSK',          hex: '#310169', rgb: '49, 1, 105',    text: '#FFF' },
+        { name: "MOM'S DRESS",   hex: '#BF01BD', rgb: '191, 1, 189',   text: '#FFF' },
+        { name: 'MIDNIGHT',      hex: '#00214C', rgb: '0, 33, 76',     text: '#FFF' },
+        { name: 'YOU DIED',      hex: '#BF0000', rgb: '191, 0, 0',     text: '#FFF' },
+        { name: 'LIGHTS OUT',    hex: '#131313', rgb: '19, 19, 19',    text: '#8E8E93' },
+        { name: 'CHANNEL 3',     hex: '#0001BE', rgb: '0, 0, 190',     text: '#FFF' },
       ],
     };
 
-    // Hero grid — all 30 colors as solid blocks
+    // HUD cycling
     const all = [...palettes.basics, ...palettes.vibes, ...palettes.moods];
-    const heroGrid = document.getElementById('hero-grid');
-    all.forEach(c => {
-      const d = document.createElement('div');
-      d.style.background = c.hex;
-      d.dataset.name = c.name;
-      d.dataset.hex = c.hex;
-      d.dataset.rgb = c.rgb;
-      d.dataset.text = c.text;
-      heroGrid.appendChild(d);
-    });
-
-    // Cycle hero HUD label through colors
-    let hudIdx = 5; // start on SUBZERO
+    let hudIdx = 11; // start on SUBZERO
     const hudName = document.getElementById('hud-name');
     const hudHex  = document.getElementById('hud-hex');
     const hudRgb  = document.getElementById('hud-rgb');
-
-    function cycleHud() {
+    setInterval(() => {
       hudIdx = (hudIdx + 1) % all.length;
       const c = all[hudIdx];
       hudName.textContent = c.name;
       hudHex.textContent  = c.hex;
       hudRgb.textContent  = c.rgb;
-    }
-    setInterval(cycleHud, 2000);
+    }, 1800);
 
-    // "How it works" color block cycles
-    const howColors = ['#49B5FF','#A476FD','#FFD479','#FD6351','#E73109','#5A4FCF','#008000','#FF2000'];
+    // "How it works" block cycles
+    const howColors = palettes.vibes.map(c => c.hex);
     let howIdx = 0;
-    const howBlock = document.getElementById('how-block');
-    howBlock.style.background = howColors[0];
+    const howColor = document.getElementById('how-color');
+    howColor.style.background = howColors[0];
     setInterval(() => {
       howIdx = (howIdx + 1) % howColors.length;
-      howBlock.style.background = howColors[howIdx];
-    }, 1800);
+      howColor.style.background = howColors[howIdx];
+    }, 1600);
 
     // Palette grid
     function renderPalette(key) {
@@ -277,7 +293,6 @@
 
     renderPalette('basics');
 
-    // Nav scroll
     window.addEventListener('scroll', () => {
       document.getElementById('nav').classList.toggle('nav--solid', window.scrollY > 40);
     }, { passive: true });
